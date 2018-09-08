@@ -1,6 +1,8 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+//mycode
+import MoveBook from './MoveBook'
 
 class BooksApp extends React.Component {
   state = {
@@ -13,6 +15,7 @@ class BooksApp extends React.Component {
     showSearchPage: false,
 
     //mycode
+    //array includes will read, currently reading, have read?
     books: []
   }
   //mycode
@@ -20,6 +23,16 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
     })
+  }
+
+  //mycode
+  moveBook = (book) => {
+    this.setState((state) => ({
+      //move book from one array to another? from one object within
+      //the books[] to another object?
+      //next line is wrong: placeholder
+      books: state.book.concat([ book ])
+    }))
   }
 
   render() {
