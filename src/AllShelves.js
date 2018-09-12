@@ -6,7 +6,7 @@ class AllShelves extends Component {
 
         return (
             //copied from App.js
-            <div className="list-books">
+          <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
