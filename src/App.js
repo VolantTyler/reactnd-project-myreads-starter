@@ -20,11 +20,7 @@ class BooksApp extends React.Component {
     //array includes will read, currently reading, have read?
     books: []
   }
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({books})
-    })
-  }
+
   //@Rodrick webinar
   clickBack = () => {
     this.setState({ showSearchPage: false});
@@ -35,7 +31,8 @@ class BooksApp extends React.Component {
   }
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({books})
+      this.setState({books});
+      console.log(books);
     })
   }
 
@@ -55,6 +52,7 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <SearchBook 
             clickBack={this.clickBack}
+            books={this.state.books}
             />
         ) : (
           <AllShelves 

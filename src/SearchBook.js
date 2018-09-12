@@ -25,7 +25,7 @@ class SearchBook extends Component {
             const match = new RegExp(escapeRegExp(query), 'i')
             showingBooks = books.filter((book) => match.test(book.name))
         } else {
-            showingBooks = ""
+            showingBooks = []
         }
 
         return (
