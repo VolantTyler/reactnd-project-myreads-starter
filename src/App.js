@@ -37,14 +37,14 @@ class BooksApp extends React.Component {
   }
 
   //mycode
-  moveBook = (book) => {
-    this.setState((state) => ({
+  // moveBook = (book) => {
+  //   this.setState((state) => ({
       //move book from one array to another? from one object within
       //the books[] to another object?
       //next line is wrong: placeholder
-      books: state.book.concat([ book ])
-    }))
-  }
+  //     books: state.book.concat([ book ])
+  //   }))
+  // }
 
   render() {
     return (
@@ -57,6 +57,7 @@ class BooksApp extends React.Component {
         ) : (
           <AllShelves 
             clickSearch={this.clickSearch}
+            books={this.state.books}
           />
         )}
       </div>

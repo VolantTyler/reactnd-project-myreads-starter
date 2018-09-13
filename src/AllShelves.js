@@ -1,8 +1,25 @@
 import React, { Component } from 'react'
 
 class AllShelves extends Component {
+
+    booksToShelf = (books) => {
+
+        const currently = books.filter(book => book.shelf === 'currentlyReading');
+        const want = books.filter(book => book.shelf === 'wantToRead');
+        const haveRead = books.filter(book => book.shelf === 'read');
+
+        return [
+            {type: 'Currently Reading', books: currently}, 
+            {type: 'Want To Read', books: want}, 
+            {type: 'Read', books: haveRead}, 
+
+        ]
+    }
+
     render() {
-        const {clickSearch} = this.props; 
+        const {clickSearch, books} = this.props; 
+        console.log(books);
+        console.log(this.booksToShelf(books));
 
         return (
             //copied from App.js
