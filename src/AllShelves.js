@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Shelf from './Shelf.js'
 
 class AllShelves extends Component {
 
@@ -18,8 +19,9 @@ class AllShelves extends Component {
 
     render() {
         const {clickSearch, books} = this.props; 
-        console.log(books);
-        console.log(this.booksToShelf(books));
+        //console.log(books);
+        const shelves = this.booksToShelf(books);
+        console.log(shelves);
 
         return (
             //copied from App.js
@@ -29,11 +31,21 @@ class AllShelves extends Component {
             </div>
             <div className="list-books-content">
               <div>
+
+                  {shelves.map(shelf => 
+                  <Shelf 
+                    key={shelf.type}
+                    shelf={shelf}
+                  />)}
+
+                  {/* start bookshelf */}
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
+
+                          {/* start book */}
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
