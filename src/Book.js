@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 class Book extends Component{
     render(){
 
-        const {book} = this.props;
+        const {book, key} = this.props;
 
         return (
             // <div>
-            <li>
+            <li id={book.id}>
                 <div className="book">
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>
