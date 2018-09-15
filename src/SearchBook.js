@@ -28,8 +28,12 @@ class SearchBook extends Component {
                 match.test(book.title) ||
                 match.test(book.authors)
             )
+            if (showingBooks.length === 0) {
+                //TODO: display message in div in place of book list
+                console.log('No Results');
+            }
         } else {
-            showingBooks = []
+            showingBooks = books;
         }
 
         return (
