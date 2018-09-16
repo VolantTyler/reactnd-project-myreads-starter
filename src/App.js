@@ -2,7 +2,6 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 //mycode
-import MoveBook from './MoveBook'
 import SearchBook from './SearchBook'
 import AllShelves from './AllShelves'
 
@@ -30,9 +29,8 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: true});
   }
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({books});
-      console.log(books);
+    BooksAPI.getAll().then((result) => {
+      this.setState({books: result});
     })
   }
 
@@ -47,6 +45,7 @@ class BooksApp extends React.Component {
   // }
 
   render() {
+    console.log(this.state.books)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
