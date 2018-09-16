@@ -7,7 +7,7 @@ class Book extends Component{
 
         return (
             // <div>
-            <li id={book.id}>
+            <li key={book.id}>
                 <div className="book">
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>
@@ -23,7 +23,7 @@ class Book extends Component{
                     </div>
                     <div className="book-title">{book.title}</div>
                     {book.authors.map(author =>
-                        <div className="book-authors">{author}</div>
+                        <div key={author} className="book-authors">{author}</div>
                         )}
                 </div>
             </li>
