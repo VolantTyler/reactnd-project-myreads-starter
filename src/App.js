@@ -35,22 +35,19 @@ class BooksApp extends React.Component {
       .then(res => this.setState({ books: res}))})
 
   }
+  //TODO: search function
+  searchAllBooks = (query) => {
+    BooksAPI.search(query)
+    .then(result => this.setState({ books: result}))
+  }
   componentDidMount() {
-    BooksAPI.getAll().then((result) => {
+    BooksAPI.getAll()
+    .then((result) => {
       this.setState({books: result});
     })
     .catch(err => console.log(err))
   }
 
-  //mycode
-  // moveBook = (book) => {
-  //   this.setState((state) => ({
-      //move book from one array to another? from one object within
-      //the books[] to another object?
-      //next line is wrong: placeholder
-  //     books: state.book.concat([ book ])
-  //   }))
-  // }
 
   render() {
     console.log(this.state.books)
@@ -61,6 +58,7 @@ class BooksApp extends React.Component {
             clickBack={this.clickBack}
             books={this.state.books}
             moveBook={this.moveBook}
+            searchAllBooks={this.searchAllBooks}
             />
         ) : (
           <AllShelves 
