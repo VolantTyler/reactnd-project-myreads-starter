@@ -17,7 +17,7 @@ class Book extends Component{
     //mycode
     moveBook = (event) => {
         const shelf = event.target.value;
-        this.props.moveBook(this.props.book.id, shelf)
+        this.props.moveBook(this.props.book, shelf)
 
         this.setState({shelf});
 
