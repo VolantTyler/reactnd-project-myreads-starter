@@ -60,6 +60,7 @@ class BooksApp extends React.Component {
           <SearchBook 
             clickBack={this.clickBack}
             books={this.state.books}
+            moveBook={this.moveBook}
             />
         ) : (
           <AllShelves 

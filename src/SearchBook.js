@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import escapeRegExp from 'escape-string-regexp'
+import Book from './Book.js'
 
 
 class SearchBook extends Component {
@@ -16,7 +17,7 @@ class SearchBook extends Component {
 
     render() {
         //@Rodrick
-        const {clickBack} = this.props; 
+        const {clickBack, moveBook} = this.props; 
 
         const {books} = this.props
         const {query} = this.state
@@ -61,7 +62,13 @@ class SearchBook extends Component {
             <div className="search-books-results">
               <ol className="books-grid">
                 {/* mycode */}
-                {showingBooks.map((book) => (
+                {showingBooks.map((book) => 
+                    <Book 
+                    key={book.id}
+                    book={book}
+                    moveBook={moveBook}
+                />)}
+                {/* (
                     <li key={book.id}>
                         <div className="book">
                             <div className="book-top">
@@ -80,7 +87,7 @@ class SearchBook extends Component {
                             <div className="book-authors">{book.authors}</div>
                         </div>
                     </li>
-                ))}
+                ))} */}
               </ol>
             </div>
           </div>        
