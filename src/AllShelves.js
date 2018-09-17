@@ -18,7 +18,7 @@ class AllShelves extends Component {
     }
 
     render() {
-        const {clickSearch, books} = this.props; 
+        const {clickSearch, books, moveBook} = this.props; 
         //console.log(books);
         const shelves = this.booksToShelf(books);
         console.log(shelves);
@@ -36,6 +36,7 @@ class AllShelves extends Component {
                   <Shelf 
                     key={shelf.type}
                     shelf={shelf}
+                    moveBook={moveBook}
                   />)}
 
                   {/* start bookshelf */}

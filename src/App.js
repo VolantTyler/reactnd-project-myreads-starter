@@ -28,10 +28,17 @@ class BooksApp extends React.Component {
   clickSearch = () => {
     this.setState({ showSearchPage: true});
   }
+  moveBook = (bookToMove, newShelf) => {
+    console.log(bookToMove);
+    console.log(newShelf);
+    BooksAPI.update(bookToMove, newShelf)
+
+  }
   componentDidMount() {
     BooksAPI.getAll().then((result) => {
       this.setState({books: result});
     })
+    .catch(err => console.log(err))
   }
 
   //mycode
@@ -57,6 +64,7 @@ class BooksApp extends React.Component {
           <AllShelves 
             clickSearch={this.clickSearch}
             books={this.state.books}
+            moveBook={this.moveBook}
           />
         )}
       </div>

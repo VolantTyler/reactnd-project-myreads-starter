@@ -1,37 +1,29 @@
 import React, { Component } from 'react'
+import * as BooksAPI from './BooksAPI'
+
 
 class Book extends Component{
-    //@Rodrick code
-    //can also use componenetDidMount video 30-40min
     constructor(props) {
         super(props)
-        this.state= {
-            shelf: props.book.shelf
+    
+        this.state = {
+            shelf: ''
         }
+    }
+    componentDidMount = () => {
+        this.setState({shelf: this.props.book.shelf})
     }
 
     //mycode
-    moveBooks = (event) => {
+    moveBook = (event) => {
         const shelf = event.target.value;
-        this.setState({shelf})
+        this.props.moveBook(this.props.book.id, shelf)
+
+        this.setState({shelf});
+
+        //BooksAPI.update(this.props.book.id, shelf)
     }
 
-    // inspiration:
-    // removeContact = (contact) => {
-    //     this.setState((state) => ({
-    //       contacts: state.contacts.filter((c) => c.id !== contact.id)
-    //     }))
-    
-    //     ContactsAPI.remove(contact)
-    //   }
-    
-    //   createContact(contact) {
-    //     ContactsAPI.create(contact).then(contact => {
-    //       this.setState(state => ({
-    //         contacts: state.contacts.concat([ contact ])
-    //       }))
-    //     })
-    //   }
 
     render(){
 
@@ -45,7 +37,7 @@ class Book extends Component{
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>
                         <div className="book-shelf-changer">
-                            <select value={shelf} onChange={this.moveBooks}>
+                            <select value={shelf} onChange={this.moveBook}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>

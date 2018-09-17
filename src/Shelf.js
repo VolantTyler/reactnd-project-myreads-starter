@@ -4,8 +4,7 @@ import Book from './Book.js'
 
 
 const Shelf = (props) => {
-    const {shelf} = props;
-    console.log(shelf);
+    const {shelf, moveBook} = props;
 
     return (
         <div>
@@ -17,6 +16,7 @@ const Shelf = (props) => {
                             <Book 
                                 key={book.id}
                                 book={book}
+                                moveBook={moveBook}
                                 // title={book.title}
                                 // authors={book.authors}
                                 // image={book.imageLinks.smallThumbnail}
