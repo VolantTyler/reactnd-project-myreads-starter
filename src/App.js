@@ -29,8 +29,9 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: true});
   }
   moveBook = (bookToMove, newShelf) => {
+    //TODO: use the same approach with BooksAPI.search(query)
     BooksAPI.update(bookToMove, newShelf)
-      .then(res => {BooksAPI.getAll()
+      .then(() => {BooksAPI.getAll()
       .then(res => this.setState({ books: res}))})
 
   }
