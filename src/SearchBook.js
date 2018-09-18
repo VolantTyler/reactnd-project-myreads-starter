@@ -15,20 +15,26 @@ class SearchBook extends Component {
         }
     }
 
+    //@Rodrick
+    syncBooks = (queryBooksList) => {
+        return (queryBooksList.map(book => {
+            const myBook = this.props.books.find(item => item.id === book.id);
+            if (myBook) {
+                book['shelf'] = myBook.shelf;
+            }
+            return book;
+        }))
+    }
+
     updateQuery = (event) => {
         const query = event.target.value;
         this.setState({ query });
-        BooksAPI.search(query).then(res => this.setState({books: res})
+        BooksAPI.search(query).then(res => this.setState({books: this.syncBooks(res)})
         )
     }
     clearQuery = () => {
         this.setState({query: ''})
     }
-    // searchAllBooks = (match) => {
-    //     this.props.searchAllBooks(match)
-
-    //     //this.setState({books});
-    // }
 
     render() {
         //@Rodrick
