@@ -29,7 +29,7 @@ class Book extends Component{
     render(){
 
         const {book} = this.props;
-        const {authors = ['unknown']} = book;
+        const {imageLinks = '', authors = ['unknown']} = book;
         const {shelf} = this.state;
 
         return (
@@ -37,7 +37,7 @@ class Book extends Component{
             <li key={book.id}>
                 <div className="book">
                     <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})`}}></div>
                         <div className="book-shelf-changer">
                             <select value={shelf} onChange={this.moveBook}>
                                 <option value="move" disabled>Move to...</option>

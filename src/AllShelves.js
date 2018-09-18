@@ -19,9 +19,7 @@ class AllShelves extends Component {
 
     render() {
         const {clickSearch, books, moveBook} = this.props; 
-        //console.log(books);
         const shelves = this.booksToShelf(books);
-        console.log(shelves);
 
         return (
             //copied from App.js
