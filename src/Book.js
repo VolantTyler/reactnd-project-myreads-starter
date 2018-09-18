@@ -29,6 +29,7 @@ class Book extends Component{
     render(){
 
         const {book} = this.props;
+        const {authors = ['unknown']} = book;
         const {shelf} = this.state;
 
         return (
@@ -48,7 +49,7 @@ class Book extends Component{
                         </div>
                     </div>
                     <div className="book-title">{book.title}</div>
-                    {book.authors.map(author =>
+                    {authors.map(author =>
                         <div key={author} className="book-authors">{author}</div>
                         )}
                 </div>

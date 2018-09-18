@@ -6,17 +6,20 @@ import * as BooksAPI from './BooksAPI'
 
 
 class SearchBook extends Component {
+    constructor(props) {
+        super(props)
 
-    state = {
-        query: "",
-        books: []
+        this.state = {
+            query: '',
+            books: []
+        }
     }
-    updateQuery = (query) => {
-        this.setState({ query: query.trim() });
-        BooksAPI.search(query)
-        .then(res => {
-            this.setState({books: res})
-        })
+
+    updateQuery = (event) => {
+        const query = event.target.value;
+        this.setState({ query });
+        BooksAPI.search(query).then(res => this.setState({books: res})
+        )
     }
     clearQuery = () => {
         this.setState({query: ''})
@@ -29,9 +32,9 @@ class SearchBook extends Component {
 
     render() {
         //@Rodrick
-        const {clickBack, moveBook, searchAllBooks} = this.props; 
+        const {clickBack, moveBook} = this.props; 
 
-        const {books} = this.props
+        const {books} = this.state;
         const {query} = this.state
 
         if (query === '') {
@@ -76,7 +79,7 @@ class SearchBook extends Component {
                     type="text" 
                     placeholder="Search by title or author"
                     value={query} 
-                    onChange={(event) => this.updateQuery(event.target.value)}
+                    onChange={(event) => this.updateQuery(event)}
                 />
               </div>
             </div>
@@ -88,7 +91,8 @@ class SearchBook extends Component {
                     key={book.id}
                     book={book}
                     moveBook={moveBook}
-                />)}
+                    />)
+                }
               </ol>
             </div>
           </div>        

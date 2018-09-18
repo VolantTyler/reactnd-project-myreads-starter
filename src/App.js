@@ -6,7 +6,10 @@ import SearchBook from './SearchBook'
 import AllShelves from './AllShelves'
 
 class BooksApp extends React.Component {
-  state = {
+  constructor(props) {
+    super(props)
+
+    this.state = {
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -19,6 +22,7 @@ class BooksApp extends React.Component {
     //array includes will read, currently reading, have read?
     books: []
   }
+}
 
   //@Rodrick webinar
   clickBack = () => {
@@ -30,16 +34,30 @@ class BooksApp extends React.Component {
   }
   moveBook = (bookToMove, newShelf) => {
     //TODO: use the same approach with BooksAPI.search(query)
-    BooksAPI.update(bookToMove, newShelf)
-      .then(() => {BooksAPI.getAll()
-      .then(res => this.setState({ books: res}))})
+    // BooksAPI.update(bookToMove, newShelf)
+    //   .then(() => {BooksAPI.getAll()
+    //   .then(res => this.setState({ books: res}))})
         //@Rodrick 57:00 explains how to make refresh smoother
+    BooksAPI.update(bookToMove, newShelf);
+    this.setState((state, props) => {
+      const books = state.books;
+
+      const newBooks = books.map(book => {
+        if (book.id === bookToMove.id) {
+          book.shelf = newShelf
+        }
+
+        return book;
+      })
+
+      return {books: newBooks};
+    }) 
   }
   //TODO: search function
-  searchAllBooks = (query) => {
-    BooksAPI.search(query)
-    .then(result => this.setState({ books: result}))
-  }
+  // searchAllBooks = (query) => {
+  //   BooksAPI.search(query)
+  //   .then(result => this.setState({ books: result}))
+  // }
   componentDidMount() {
     BooksAPI.getAll()
     .then((result) => {
@@ -58,7 +76,7 @@ class BooksApp extends React.Component {
             clickBack={this.clickBack}
             books={this.state.books}
             moveBook={this.moveBook}
-            searchAllBooks={this.searchAllBooks}
+            // searchAllBooks={this.searchAllBooks}
             />
         ) : (
           <AllShelves 
