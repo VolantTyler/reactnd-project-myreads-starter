@@ -13,9 +13,10 @@ class SearchBook extends Component {
     }
     updateQuery = (query) => {
         this.setState({ query: query.trim() });
-        BooksAPI.search(query).
-        then(res => this.setState({books: res}))
-        .catch(this.setState({books: []}))
+        BooksAPI.search(query)
+        .then(res => {
+            this.setState({books: res})
+        })
     }
     clearQuery = () => {
         this.setState({query: ''})
@@ -33,6 +34,9 @@ class SearchBook extends Component {
         const {books} = this.props
         const {query} = this.state
 
+        if (query === '') {
+            this.state.books = []
+        }
         // let showingBooks
         // if (query) {
         //     const match = new RegExp(escapeRegExp(query), 'i')
