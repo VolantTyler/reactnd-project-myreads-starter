@@ -29,8 +29,10 @@ class SearchBook extends Component {
     updateQuery = (event) => {
         const query = event.target.value;
         this.setState({ query });
-        BooksAPI.search(query).then(res => this.setState({books: this.syncBooks(res)})
-        )
+        BooksAPI.search(query)
+        .then(res => this.setState({books: this.syncBooks(res)}))
+        //TODO: error handling for blank or non-matching queries
+        //.catch(console.log(err));
     }
     clearQuery = () => {
         this.setState({query: ''})
