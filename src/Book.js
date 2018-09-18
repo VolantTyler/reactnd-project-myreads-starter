@@ -15,6 +15,7 @@ class Book extends Component{
     }
 
     //mycode
+    //TODO: these two moveBook are different? rename one?
     moveBook = (event) => {
         const shelf = event.target.value;
         this.props.moveBook(this.props.book, shelf)

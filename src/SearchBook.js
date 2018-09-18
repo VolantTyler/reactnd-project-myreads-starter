@@ -1,19 +1,30 @@
 import React, { Component } from 'react'
 import escapeRegExp from 'escape-string-regexp'
 import Book from './Book.js'
+//why import BooksAPI here, and not App.js?
+import * as BooksAPI from './BooksAPI'
 
 
 class SearchBook extends Component {
 
     state = {
-        query: ""
+        query: "",
+        books: []
     }
     updateQuery = (query) => {
-        this.setState({ query: query.trim() })
+        this.setState({ query: query.trim() });
+        BooksAPI.search(query).
+        then(res => this.setState({books: res}))
+        .catch(this.setState({books: []}))
     }
     clearQuery = () => {
         this.setState({query: ''})
     }
+    // searchAllBooks = (match) => {
+    //     this.props.searchAllBooks(match)
+
+    //     //this.setState({books});
+    // }
 
     render() {
         //@Rodrick
@@ -22,12 +33,14 @@ class SearchBook extends Component {
         const {books} = this.props
         const {query} = this.state
 
-        let showingBooks
-        if (query) {
-            const match = new RegExp(escapeRegExp(query), 'i')
+        // let showingBooks
+        // if (query) {
+        //     const match = new RegExp(escapeRegExp(query), 'i')
             //TODO: insert search function here, 
             //replace books.filter() with searchAllBooks(query)
-            showingBooks = searchAllBooks(match)
+           // showingBooks = searchAllBooks(match)
+
+            //@Rodrick 1:01:00 search page walkthrough
             //original code worked:
             // showingBooks = books.filter(book => 
             //     match.test(book.title) ||
@@ -37,9 +50,9 @@ class SearchBook extends Component {
             //     //TODO: display message in div in place of book list
             //     console.log('No Results');
             // }
-        } else {
-            showingBooks = books;
-        }
+        // } else {
+        //     showingBooks = books;
+        // }
 
         return (
             //copied from App.js
@@ -66,7 +79,7 @@ class SearchBook extends Component {
             <div className="search-books-results">
               <ol className="books-grid">
                 {/* mycode */}
-                {showingBooks.map((book) => 
+                {this.state.books.map((book) => 
                     <Book 
                     key={book.id}
                     book={book}

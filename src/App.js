@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
     BooksAPI.update(bookToMove, newShelf)
       .then(() => {BooksAPI.getAll()
       .then(res => this.setState({ books: res}))})
-
+        //@Rodrick 57:00 explains how to make refresh smoother
   }
   //TODO: search function
   searchAllBooks = (query) => {
