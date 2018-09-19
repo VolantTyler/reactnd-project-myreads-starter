@@ -41,15 +41,20 @@ class BooksApp extends React.Component {
     this.setState((state, props) => {
       const books = state.books;
 
-      const newBooks = books.map(book => {
-        if (book.id === bookToMove.id) {
-          book.shelf = newShelf
-        }
+      if (!books.includes(bookToMove)) {
+        bookToMove.shelf = newShelf;
+        books.push(bookToMove);
+      } else {
+        books.map(book => {
+          if (book.id === bookToMove.id) {
+            book.shelf = newShelf
+          }
 
-        return book;
-      })
+          return book;
+        })
+      }
 
-      return {books: newBooks};
+      return {books};
     }) 
   }
   //TODO: search function

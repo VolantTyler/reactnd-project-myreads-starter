@@ -17,7 +17,7 @@ class SearchBook extends Component {
 
     //@Rodrick
     syncBooks = (queryBooksList) => {
-        return (queryBooksList.map(book => {
+        return  (queryBooksList.map(book => {
             const myBook = this.props.books.find(item => item.id === book.id);
             if (myBook) {
                 //TODO: the API book is not getting the shelf assigned
@@ -46,8 +46,6 @@ class SearchBook extends Component {
                 }
             })
         }
-            //TODO: error handling for blank or non-matching queries
-            //.catch(console.log(err));
     }
     clearQuery = () => {
         this.setState({query: ''})
