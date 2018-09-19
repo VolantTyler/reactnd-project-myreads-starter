@@ -21,8 +21,6 @@ class Book extends Component{
         this.props.moveBook(this.props.book, shelf)
 
         this.setState({shelf});
-
-        //BooksAPI.update(this.props.book.id, shelf)
     }
 
 
@@ -39,7 +37,7 @@ class Book extends Component{
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})`}}></div>
                         <div className="book-shelf-changer">
-                            <select value={shelf} onChange={this.moveBook}>
+                            <select value={shelf ? shelf: 'none'} onChange={this.moveBook}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>

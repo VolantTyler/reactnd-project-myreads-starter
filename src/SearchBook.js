@@ -20,8 +20,11 @@ class SearchBook extends Component {
         return (queryBooksList.map(book => {
             const myBook = this.props.books.find(item => item.id === book.id);
             if (myBook) {
+                //TODO: the API book is not getting the shelf assigned
                 book['shelf'] = myBook.shelf;
             }
+            //need else?
+            //else {book['shelf'] = 'none}
             return book;
         }))
     }
@@ -29,16 +32,22 @@ class SearchBook extends Component {
     updateQuery = (event) => {
         const query = event.target.value;
         this.setState({ query });
-        BooksAPI.search(query)
-        .then(res => {
-            if(res.error) {
-                this.setState({books: []})
-            } else {
-            this.setState({books: this.syncBooks(res)})
-            }
-        })
-        //TODO: error handling for blank or non-matching queries
-        //.catch(console.log(err));
+        if (query === '') {
+            //if search input is empty, show no books
+            this.setState({books: []})
+        } else {
+            BooksAPI.search(query)
+            .then(res => {
+                if(res.error) {
+                    //if search API call returns an error, show no books
+                    this.setState({books: []})
+                } else {
+                this.setState({books: this.syncBooks(res)})
+                }
+            })
+        }
+            //TODO: error handling for blank or non-matching queries
+            //.catch(console.log(err));
     }
     clearQuery = () => {
         this.setState({query: ''})

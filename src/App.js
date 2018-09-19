@@ -33,10 +33,9 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: true});
   }
   moveBook = (bookToMove, newShelf) => {
-    //TODO: use the same approach with BooksAPI.search(query)
-    // BooksAPI.update(bookToMove, newShelf)
-    //   .then(() => {BooksAPI.getAll()
-    //   .then(res => this.setState({ books: res}))})
+        //TODO: adjust this code to allow changing the shelf 
+        //of books not currently in library
+        //@Rodrick 1:27:00 handle books not in library
         //@Rodrick 57:00 explains how to make refresh smoother
     BooksAPI.update(bookToMove, newShelf);
     this.setState((state, props) => {
