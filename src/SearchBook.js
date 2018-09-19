@@ -30,7 +30,13 @@ class SearchBook extends Component {
         const query = event.target.value;
         this.setState({ query });
         BooksAPI.search(query)
-        .then(res => this.setState({books: this.syncBooks(res)}))
+        .then(res => {
+            if(res.error) {
+                this.setState({books: []})
+            } else {
+            this.setState({books: this.syncBooks(res)})
+            }
+        })
         //TODO: error handling for blank or non-matching queries
         //.catch(console.log(err));
     }
