@@ -20,11 +20,9 @@ class SearchBook extends Component {
         return  (queryBooksList.map(book => {
             const myBook = this.props.books.find(item => item.id === book.id);
             if (myBook) {
-                //TODO: the API book is not getting the shelf assigned
                 book['shelf'] = myBook.shelf;
             }
-            //need else?
-            //else {book['shelf'] = 'none}
+
             return book;
         }))
     }
@@ -40,6 +38,7 @@ class SearchBook extends Component {
             .then(res => {
                 if(res.error) {
                     //if search API call returns an error, show no books
+                    //TODO: include a "no results" <div>
                     this.setState({books: []})
                 } else {
                 this.setState({books: this.syncBooks(res)})
@@ -58,29 +57,6 @@ class SearchBook extends Component {
         const {books} = this.state;
         const {query} = this.state
 
-        if (query === '') {
-            this.state.books = []
-        }
-        // let showingBooks
-        // if (query) {
-        //     const match = new RegExp(escapeRegExp(query), 'i')
-            //TODO: insert search function here, 
-            //replace books.filter() with searchAllBooks(query)
-           // showingBooks = searchAllBooks(match)
-
-            //@Rodrick 1:01:00 search page walkthrough
-            //original code worked:
-            // showingBooks = books.filter(book => 
-            //     match.test(book.title) ||
-            //     match.test(book.authors)
-            // )
-            // if (showingBooks.length === 0) {
-            //     //TODO: display message in div in place of book list
-            //     console.log('No Results');
-            // }
-        // } else {
-        //     showingBooks = books;
-        // }
 
         return (
             //copied from App.js

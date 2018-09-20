@@ -31,7 +31,6 @@ class Book extends Component{
         const {shelf} = this.state;
 
         return (
-            // <div>
             <li key={book.id}>
                 <div className="book">
                     <div className="book-top">
@@ -52,8 +51,6 @@ class Book extends Component{
                         )}
                 </div>
             </li>
-
-            // </div>
         )
     }
 }

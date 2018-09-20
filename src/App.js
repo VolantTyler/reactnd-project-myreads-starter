@@ -57,11 +57,7 @@ class BooksApp extends React.Component {
       return {books};
     }) 
   }
-  //TODO: search function
-  // searchAllBooks = (query) => {
-  //   BooksAPI.search(query)
-  //   .then(result => this.setState({ books: result}))
-  // }
+
   componentDidMount() {
     BooksAPI.getAll()
     .then((result) => {
