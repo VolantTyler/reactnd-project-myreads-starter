@@ -4,26 +4,20 @@ import './App.css'
 //mycode
 import SearchBook from './SearchBook'
 import AllShelves from './AllShelves'
+import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
-
-    //mycode
-    //array includes will read, currently reading, have read?
-    books: []
+      //mycode
+      //array includes will read, currently reading, have read?
+      books: []
   }
 }
 
+//TODO: remove these two functions, throughout the program
   //@Rodrick webinar
   clickBack = () => {
     this.setState({ showSearchPage: false});
@@ -70,19 +64,23 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBook 
-            clickBack={this.clickBack}
-            books={this.state.books}
-            moveBook={this.moveBook}
-            />
-        ) : (
+
+        <Route exact path='/' render={() => (
           <AllShelves 
             clickSearch={this.clickSearch}
             books={this.state.books}
             moveBook={this.moveBook}
           />
-        )}
+        )}/>
+
+        <Route path='/search' render={() => (
+          <SearchBook 
+            clickBack={this.clickBack}
+            books={this.state.books}
+            moveBook={this.moveBook}
+          />
+        )}/>
+
       </div>
     )
   }
