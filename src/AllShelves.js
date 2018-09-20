@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import Shelf from './Shelf.js'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
 
 class AllShelves extends Component {
+
+    componentDidMount() {
+      BooksAPI.getAll()
+      .then((result) => {
+        this.setState({books: result});
+      })
+      .catch(err => console.log(err))
+    }
 
     booksToShelf = (books) => {
 

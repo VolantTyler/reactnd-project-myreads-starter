@@ -23,7 +23,6 @@ class BooksApp extends React.Component {
         //of books not currently in library
         //@Rodrick 1:27:00 handle books not in library
         //@Rodrick 57:00 explains how to make refresh smoother
-    BooksAPI.update(bookToMove, newShelf);
     this.setState((state, props) => {
       const books = state.books;
 
@@ -41,7 +40,9 @@ class BooksApp extends React.Component {
       }
 
       return {books};
-    }) 
+    });
+    BooksAPI.update(bookToMove, newShelf);
+ 
   }
 
   componentDidMount() {
