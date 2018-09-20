@@ -3,6 +3,7 @@ import escapeRegExp from 'escape-string-regexp'
 import Book from './Book.js'
 //why import BooksAPI here, and not App.js?
 import * as BooksAPI from './BooksAPI'
+import { Link } from 'react-router-dom'
 
 
 class SearchBook extends Component {
@@ -62,7 +63,13 @@ class SearchBook extends Component {
             //copied from App.js
             <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={clickBack}>Close</a>
+              <Link 
+                className="close-search" 
+                onClick={clickBack}
+                to='/'
+                >
+                Close
+                </Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
