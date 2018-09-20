@@ -17,15 +17,7 @@ class BooksApp extends React.Component {
   }
 }
 
-//TODO: remove these two functions, throughout the program
-  //@Rodrick webinar
-  clickBack = () => {
-    this.setState({ showSearchPage: false});
-  }
-  //mycode
-  clickSearch = () => {
-    this.setState({ showSearchPage: true});
-  }
+
   moveBook = (bookToMove, newShelf) => {
         //TODO: adjust this code to allow changing the shelf 
         //of books not currently in library
@@ -67,7 +59,6 @@ class BooksApp extends React.Component {
 
         <Route exact path='/' render={() => (
           <AllShelves 
-            clickSearch={this.clickSearch}
             books={this.state.books}
             moveBook={this.moveBook}
           />
@@ -75,7 +66,6 @@ class BooksApp extends React.Component {
 
         <Route path='/search' render={() => (
           <SearchBook 
-            clickBack={this.clickBack}
             books={this.state.books}
             moveBook={this.moveBook}
           />

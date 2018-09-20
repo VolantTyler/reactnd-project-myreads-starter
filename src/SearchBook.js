@@ -53,7 +53,7 @@ class SearchBook extends Component {
 
     render() {
         //@Rodrick
-        const {clickBack, moveBook} = this.props; 
+        const {moveBook} = this.props; 
 
         const {books} = this.state;
         const {query} = this.state
@@ -65,7 +65,6 @@ class SearchBook extends Component {
             <div className="search-books-bar">
               <Link 
                 className="close-search" 
-                onClick={clickBack}
                 to='/'
                 >
                 Close

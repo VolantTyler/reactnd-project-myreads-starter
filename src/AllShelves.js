@@ -19,7 +19,7 @@ class AllShelves extends Component {
     }
 
     render() {
-        const {clickSearch, books, moveBook} = this.props; 
+        const {books, moveBook} = this.props; 
         const shelves = this.booksToShelf(books);
 
         return (
@@ -42,7 +42,6 @@ class AllShelves extends Component {
             </div>
             <div className="open-search">
               <Link 
-              onClick={clickSearch}
               to='/search'
               >
               Add a book
