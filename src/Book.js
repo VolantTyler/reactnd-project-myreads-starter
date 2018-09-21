@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 
 
 class Book extends Component{
@@ -14,8 +13,6 @@ class Book extends Component{
         this.setState({shelf: this.props.book.shelf})
     }
 
-    //mycode
-    //TODO: these two moveBook are different? rename one?
     moveBook = (event) => {
         const shelf = event.target.value;
         this.props.moveBook(this.props.book, shelf)
@@ -31,7 +28,6 @@ class Book extends Component{
         const {shelf} = this.state;
 
         return (
-            // <div>
             <li key={book.id}>
                 <div className="book">
                     <div className="book-top">
@@ -52,8 +48,6 @@ class Book extends Component{
                         )}
                 </div>
             </li>
-
-            // </div>
         )
     }
 }

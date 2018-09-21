@@ -1,6 +1,5 @@
 import React from 'react'
 import Book from './Book.js'
-// functional component
 
 
 const Shelf = (props) => {
@@ -17,9 +16,6 @@ const Shelf = (props) => {
                                 key={book.id}
                                 book={book}
                                 moveBook={moveBook}
-                                // title={book.title}
-                                // authors={book.authors}
-                                // image={book.imageLinks.smallThumbnail}
                             />)}
                     </ol>
                 </div>

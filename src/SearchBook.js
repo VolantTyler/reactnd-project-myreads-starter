@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import escapeRegExp from 'escape-string-regexp'
 import Book from './Book.js'
-//why import BooksAPI here, and not App.js?
 import * as BooksAPI from './BooksAPI'
+import { Link } from 'react-router-dom'
 
 
 class SearchBook extends Component {
@@ -15,16 +14,16 @@ class SearchBook extends Component {
         }
     }
 
-    //@Rodrick
+    //inspiration from @Rodrick webinar https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X
+    //for each matching search result, if the book is already on our shelf,
+    //set the search result book's shelf to match the existing book's shelf
     syncBooks = (queryBooksList) => {
         return  (queryBooksList.map(book => {
             const myBook = this.props.books.find(item => item.id === book.id);
             if (myBook) {
-                //TODO: the API book is not getting the shelf assigned
                 book['shelf'] = myBook.shelf;
             }
-            //need else?
-            //else {book['shelf'] = 'none}
+
             return book;
         }))
     }
@@ -40,6 +39,7 @@ class SearchBook extends Component {
             .then(res => {
                 if(res.error) {
                     //if search API call returns an error, show no books
+                    //TODO: include a "no results" <div>
                     this.setState({books: []})
                 } else {
                 this.setState({books: this.syncBooks(res)})
@@ -52,41 +52,23 @@ class SearchBook extends Component {
     }
 
     render() {
-        //@Rodrick
-        const {clickBack, moveBook} = this.props; 
+        //inspiration on structure from @Rodrick webinar https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X
+        const {moveBook} = this.props; 
 
         const {books} = this.state;
         const {query} = this.state
 
-        if (query === '') {
-            this.state.books = []
-        }
-        // let showingBooks
-        // if (query) {
-        //     const match = new RegExp(escapeRegExp(query), 'i')
-            //TODO: insert search function here, 
-            //replace books.filter() with searchAllBooks(query)
-           // showingBooks = searchAllBooks(match)
-
-            //@Rodrick 1:01:00 search page walkthrough
-            //original code worked:
-            // showingBooks = books.filter(book => 
-            //     match.test(book.title) ||
-            //     match.test(book.authors)
-            // )
-            // if (showingBooks.length === 0) {
-            //     //TODO: display message in div in place of book list
-            //     console.log('No Results');
-            // }
-        // } else {
-        //     showingBooks = books;
-        // }
 
         return (
-            //copied from App.js
+            //original copied from App.js, with modifications
             <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={clickBack}>Close</a>
+              <Link 
+                className="close-search" 
+                to='/'
+                >
+                Close
+                </Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -106,8 +88,7 @@ class SearchBook extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {/* mycode */}
-                {this.state.books.map((book) => 
+                {books.map((book) => 
                     <Book 
                     key={book.id}
                     book={book}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Shelf from './Shelf.js'
+import { Link } from 'react-router-dom'
 
 class AllShelves extends Component {
 
@@ -8,7 +9,7 @@ class AllShelves extends Component {
         const currently = books.filter(book => book.shelf === 'currentlyReading');
         const want = books.filter(book => book.shelf === 'wantToRead');
         const haveRead = books.filter(book => book.shelf === 'read');
-
+ 
         return [
             {type: 'Currently Reading', books: currently}, 
             {type: 'Want To Read', books: want}, 
@@ -18,7 +19,7 @@ class AllShelves extends Component {
     }
 
     render() {
-        const {clickSearch, books, moveBook} = this.props; 
+        const {books, moveBook} = this.props; 
         const shelves = this.booksToShelf(books);
 
         return (
@@ -40,7 +41,11 @@ class AllShelves extends Component {
               </div>
             </div>
             <div className="open-search">
-              <a onClick={clickSearch}>Add a book</a>
+              <Link 
+              to='/search'
+              >
+              Add a book
+              </Link>
             </div>
           </div>      
           )
