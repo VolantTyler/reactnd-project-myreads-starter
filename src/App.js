@@ -23,19 +23,26 @@ class BooksApp extends React.Component {
         //@Rodrick 1:27:00 handle books not in library
         //@Rodrick 57:00 explains how to make refresh smoother
 
+
+        //Suggestion from @Forrest
+        BooksAPI.update(bookToMove, newShelf)
+        .then(() => BooksAPI.getAll())
+        .then(res=> this.setState({books: res}))
+        .catch(error => this.setState(error))
+  }
         //Experimental code from @clockwerkz student repo
-    bookToMove.shelf = newShelf;
-    if (this.state.books.indexOf(bookToMove) !== -1) {
-      this.setState((prevState)=> ({books : prevState.books.map((book)=> {
-        if (book.id === bookToMove.id) {
-          return bookToMove
-        } else {
-          return book
-        }
-      })}));
-    } else {
-      this.setState((prevState) => ({ books : prevState.books.concat([ bookToMove ]) }))
-    }
+    // bookToMove.shelf = newShelf;
+    // if (this.state.books.indexOf(bookToMove) !== -1) {
+    //   this.setState((prevState)=> ({books : prevState.books.map((book)=> {
+    //     if (book.id === bookToMove.id) {
+    //       return bookToMove
+    //     } else {
+    //       return book
+    //     }
+    //   })}));
+    // } else {
+    //   this.setState((prevState) => ({ books : prevState.books.concat([ bookToMove ]) }))
+    // }
     
 
 //Below code mostly functions properly
@@ -57,9 +64,10 @@ class BooksApp extends React.Component {
 
     //   return {books};
     // });
-    BooksAPI.update(bookToMove, newShelf);
+
+    //BooksAPI.update(bookToMove, newShelf);
  
-  }
+  
 
   componentDidMount() {
     BooksAPI.getAll()
