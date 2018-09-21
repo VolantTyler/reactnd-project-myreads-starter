@@ -91,19 +91,19 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-        {/* <Route exact path='/' render={() => ( */}
+        <Route exact path='/' render={() => (
           <AllShelves 
             books={this.state.books}
             moveBook={this.moveBook}
           />
-        {/* )}/> */}
+        )}/>
 
-        {/* <Route path='/search' render={() => ( */}
+        <Route path='/search' render={() => (
           <SearchBook 
             books={this.state.books}
             moveBook={this.moveBook}
           />
-        {/* )}/> */}
+        )}/>
 
       </div>
     )
