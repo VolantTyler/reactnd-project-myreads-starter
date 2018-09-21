@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import escapeRegExp from 'escape-string-regexp'
 import Book from './Book.js'
-//why import BooksAPI here, and not App.js?
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
 
@@ -89,7 +88,7 @@ class SearchBook extends Component {
             <div className="search-books-results">
               <ol className="books-grid">
                 {/* mycode */}
-                {this.state.books.map((book) => 
+                {books.map((book) => 
                     <Book 
                     key={book.id}
                     book={book}

@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 class AllShelves extends Component {
-    constructor(props) {
-      super(props)
+    // constructor(props) {
+    //   super(props)
 
-      this.state = {
-          books: []
-      }
-    }
-    componentDidMount() {
-      BooksAPI.getAll()
-      .then((result) => {
-        this.setState({books: result});
-      })
-      .catch(err => console.log(err))
-    }
+    //   this.state = {
+    //       books: []
+    //   }
+    // }
+    // componentDidMount() {
+    //   BooksAPI.getAll()
+    //   .then((result) => {
+    //     this.setState({books: result});
+    //   })
+    //   .catch(err => console.log(err))
+    // }
 
     booksToShelf = (books) => {
 
