@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import escapeRegExp from 'escape-string-regexp'
 import Book from './Book.js'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
@@ -15,7 +14,9 @@ class SearchBook extends Component {
         }
     }
 
-    //@Rodrick
+    //inspiration from @Rodrick webinar https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X
+    //for each matching search result, if the book is already on our shelf,
+    //set the search result book's shelf to match the existing book's shelf
     syncBooks = (queryBooksList) => {
         return  (queryBooksList.map(book => {
             const myBook = this.props.books.find(item => item.id === book.id);
@@ -51,7 +52,7 @@ class SearchBook extends Component {
     }
 
     render() {
-        //@Rodrick
+        //inspiration on structure from @Rodrick webinar https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X
         const {moveBook} = this.props; 
 
         const {books} = this.state;
@@ -59,7 +60,7 @@ class SearchBook extends Component {
 
 
         return (
-            //copied from App.js
+            //original copied from App.js, with modifications
             <div className="search-books">
             <div className="search-books-bar">
               <Link 
@@ -87,7 +88,6 @@ class SearchBook extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {/* mycode */}
                 {books.map((book) => 
                     <Book 
                     key={book.id}

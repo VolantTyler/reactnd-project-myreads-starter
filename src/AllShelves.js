@@ -1,30 +1,15 @@
 import React, { Component } from 'react'
 import Shelf from './Shelf.js'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
 
 class AllShelves extends Component {
-    // constructor(props) {
-    //   super(props)
-
-    //   this.state = {
-    //       books: []
-    //   }
-    // }
-    // componentDidMount() {
-    //   BooksAPI.getAll()
-    //   .then((result) => {
-    //     this.setState({books: result});
-    //   })
-    //   .catch(err => console.log(err))
-    // }
 
     booksToShelf = (books) => {
 
         const currently = books.filter(book => book.shelf === 'currentlyReading');
         const want = books.filter(book => book.shelf === 'wantToRead');
         const haveRead = books.filter(book => book.shelf === 'read');
-
+ 
         return [
             {type: 'Currently Reading', books: currently}, 
             {type: 'Want To Read', books: want}, 

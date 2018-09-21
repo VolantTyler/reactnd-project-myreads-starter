@@ -1,6 +1,5 @@
 import React from 'react'
 import Book from './Book.js'
-// functional component
 
 
 const Shelf = (props) => {

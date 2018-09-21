@@ -18,54 +18,17 @@ class BooksApp extends React.Component {
 
 
   moveBook = (bookToMove, newShelf) => {
-        //TODO: adjust this code to allow changing the shelf 
-        //of books not currently in library
-        //@Rodrick 1:27:00 handle books not in library
-        //@Rodrick 57:00 explains how to make refresh smoother
-
 
         //Suggestion from @Forrest
+        //update API books array
         BooksAPI.update(bookToMove, newShelf)
+        //if successful, make a fresh request for the API books array
         .then(() => BooksAPI.getAll())
+        //update the local state to match the API books array
         .then(res=> this.setState({books: res}))
+        //TODO: error handling
         .catch(error => this.setState(error))
   }
-        //Experimental code from @clockwerkz student repo
-    // bookToMove.shelf = newShelf;
-    // if (this.state.books.indexOf(bookToMove) !== -1) {
-    //   this.setState((prevState)=> ({books : prevState.books.map((book)=> {
-    //     if (book.id === bookToMove.id) {
-    //       return bookToMove
-    //     } else {
-    //       return book
-    //     }
-    //   })}));
-    // } else {
-    //   this.setState((prevState) => ({ books : prevState.books.concat([ bookToMove ]) }))
-    // }
-    
-
-//Below code mostly functions properly
-    // this.setState((state, props) => {
-    //   const books = state.books;
-
-    //   if (!books.includes(bookToMove)) {
-    //     bookToMove.shelf = newShelf;
-    //     books.push(bookToMove);
-    //   } else {
-    //     books.map(book => {
-    //       if (book.id === bookToMove.id) {
-    //         book.shelf = newShelf
-    //       }
-
-    //       return book;
-    //     })
-    //   }
-
-    //   return {books};
-    // });
-
-    //BooksAPI.update(bookToMove, newShelf);
  
   
 
@@ -77,15 +40,6 @@ class BooksApp extends React.Component {
     .catch(err => console.log(err))
   }
 
-  //TODO: cleanup, not necessary?
-  componentDidUpdate(prevProps) {
-    if (this.props.books !== prevProps.books) {
-      BooksAPI.getAll()
-      .then((result) => {
-        this.setState({books: result});
-      })
-    }
-  }
 
   render() {
     return (
