@@ -19,7 +19,7 @@ class AllShelves extends Component {
     }
 
     render() {
-        const {books, moveBook} = this.props; 
+        const {books, moveBook, explanation} = this.props; 
         const shelves = this.booksToShelf(books);
 
         return (
@@ -29,6 +29,10 @@ class AllShelves extends Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
+              {/* display any messages or errors here */}
+              <div>
+                  <h2>{explanation}</h2>
+              </div>
               <div>
 
                   {shelves.map(shelf => 

@@ -1,92 +1,32 @@
-# MyReads Project
+MyReads Singe-Page Web App: Udacity Front End Web Developer Nanodegree, Project 6
+======================================================================
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+## Table of Contents
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+* [Purpose](#purpose)
+* [How to Run](#how_to_run)
+* [Learning](#learning)
 
-## TL;DR
 
-To get started developing right away:
+## Purpose
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+This sixth project of the Udacity Front-End Web Developer Nanodegree (FEND) instructed me to build a book search and shelf management app using React. Key principles included:
+1. Proper management of state, including real-time updates
+2. Error handling for failed or invalid searches
+3. Consistent interaction with an API data source
+4. Proper use of routing using React Router
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+## How_to_Run
 
-## Backend Server
+To run the program locally on your computer (requires Internet connection, JavaScript, HTML, CSS, local server, npm)
+* Download the repository from GitHub
+* In Command Prompt (Windows) or Terminal (Mac) or similar, cd: to directory where repository was downloaded
+* run `npm install` and `npm start` to create local server
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
+## Learning
 
-### `getAll`
-
-Method Signature:
-
-```js
-getAll()
-```
-
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
-
-### `update`
-
-Method Signature:
-
-```js
-update(book, shelf)
-```
-
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
-
-### `search`
-
-Method Signature:
-
-```js
-search(query)
-```
-
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+* State Management: I spent the most time here. It was challenging to conceptualize where states and props exist and how they are changed. Maintaining a unidirectional flow of information was a major change in my code-thinking. 
+* Routing and Error Handling: These were the most fun, as I saved them for the end of the project, and was impressed by what I had learned by that point. Thinking about the user experience and making sure my program was robust and easy to use was a great experience.
+* My Error Recovery: I consulted many resources for this project, from course videos to official React documentation to student webinars. As such, at one point, I had a mostly-functional app that I did not fully understand. And then it broke. I was getting duplicate entries when changing shelves on the search page (but not on the main page). The process of unraveling my code, finding unneccessary complexity, learning/re-learning states and props and components and methods--this was a great capstone to my learning this project.

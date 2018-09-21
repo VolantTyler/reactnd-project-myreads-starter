@@ -24,6 +24,7 @@ class Book extends Component{
     render(){
 
         const {book} = this.props;
+        //error handling for books without authors or imageLinks
         const {imageLinks = '', authors = ['unknown']} = book;
         const {shelf} = this.state;
 
@@ -33,6 +34,7 @@ class Book extends Component{
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})`}}></div>
                         <div className="book-shelf-changer">
+                            {/* if no shelf assigned to book, assign "none" */}
                             <select value={shelf ? shelf: 'none'} onChange={this.moveBook}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>

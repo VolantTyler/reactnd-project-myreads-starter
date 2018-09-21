@@ -10,7 +10,8 @@ class SearchBook extends Component {
 
         this.state = {
             query: '',
-            books: []
+            books: [],
+            explanation: ''
         }
     }
 
@@ -32,17 +33,16 @@ class SearchBook extends Component {
         const query = event.target.value;
         this.setState({ query });
         if (query === '') {
-            //if search input is empty, show no books
-            this.setState({books: []})
+            //if search input is empty, show no books, clear any error messages
+            this.setState({books: [], explanation: ''})
         } else {
             BooksAPI.search(query)
             .then(res => {
                 if(res.error) {
-                    //if search API call returns an error, show no books
-                    //TODO: include a "no results" <div>
-                    this.setState({books: []})
+                    //if search API call returns an error, show no books, message "no results"
+                    this.setState({books: [], explanation: 'No Results Found'})
                 } else {
-                this.setState({books: this.syncBooks(res)})
+                this.setState({books: this.syncBooks(res), explanation: ''})
                 }
             })
         }
@@ -55,7 +55,7 @@ class SearchBook extends Component {
         //inspiration on structure from @Rodrick webinar https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X
         const {moveBook} = this.props; 
 
-        const {books} = this.state;
+        const {books, explanation} = this.state;
         const {query} = this.state
 
 
@@ -87,6 +87,10 @@ class SearchBook extends Component {
               </div>
             </div>
             <div className="search-books-results">
+              {/* display any messages or errors here */}
+              <div>
+                  <h2>{explanation}</h2>
+              </div>
               <ol className="books-grid">
                 {books.map((book) => 
                     <Book 

@@ -12,7 +12,8 @@ class BooksApp extends React.Component {
 
     this.state = {
       //mycode
-      books: []
+      books: [],
+      explanation: ''
   }
 }
 
@@ -26,8 +27,8 @@ class BooksApp extends React.Component {
         .then(() => BooksAPI.getAll())
         //update the local state to match the API books array
         .then(res=> this.setState({books: res}))
-        //TODO: error handling
-        .catch(error => this.setState(error))
+        //error handling
+        .catch((error) => this.setState({explanation: 'Error Moving Book: '+error}))
   }
  
   
@@ -37,7 +38,7 @@ class BooksApp extends React.Component {
     .then((result) => {
       this.setState({books: result});
     })
-    .catch(err => console.log(err))
+    .catch(error => this.setState({explanation: error}))
   }
 
 
@@ -48,6 +49,7 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <AllShelves 
             books={this.state.books}
+            explanation={this.state.explanation}
             moveBook={this.moveBook}
           />
         )}/>
@@ -55,6 +57,7 @@ class BooksApp extends React.Component {
         <Route path='/search' render={() => (
           <SearchBook 
             books={this.state.books}
+            explanation={this.state.explanation}
             moveBook={this.moveBook}
           />
         )}/>
