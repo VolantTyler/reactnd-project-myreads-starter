@@ -87,6 +87,7 @@ class SearchBook extends Component {
               </div>
             </div>
             <div className="search-books-results">
+              {/* display any messages or errors here */}
               <div>
                   <h2>{explanation}</h2>
               </div>

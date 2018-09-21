@@ -27,8 +27,8 @@ class BooksApp extends React.Component {
         .then(() => BooksAPI.getAll())
         //update the local state to match the API books array
         .then(res=> this.setState({books: res}))
-        //TODO: error handling
-        .catch(error => this.setState({explanation: error}))
+        //error handling
+        .catch((error) => this.setState({explanation: 'Error Moving Book: '+error}))
   }
  
   
