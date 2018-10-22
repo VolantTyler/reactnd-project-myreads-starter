@@ -1,4 +1,4 @@
-MyReads Singe-Page Web App: Udacity Front End Web Developer Nanodegree, Project 6
+MyReads Single-Page Web App: Udacity Front End Web Developer Nanodegree, Project 6
 ======================================================================
 
 ## Table of Contents
