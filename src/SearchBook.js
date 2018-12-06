@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Book from './Book.js'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
+import {DebounceInput} from 'react-debounce-input'
 
 
 class SearchBook extends Component {
@@ -78,9 +79,12 @@ class SearchBook extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input 
+                {/* provides slight delay after text is entered before search is executed */}
+                <DebounceInput
                     autoFocus
-                    type="text" 
+                    minLength={0}
+                    debounceTimeout={300}
+                    type="text"
                     placeholder="Search by title or author"
                     value={query} 
                     onChange={(event) => this.updateQuery(event)}
