@@ -6,6 +6,7 @@ class Book extends Component{
         super(props)
     
         this.state = {
+            inProcess: false,
             shelf: ''
         }
     }
@@ -15,6 +16,10 @@ class Book extends Component{
 
     moveBook = (event) => {
         const shelf = event.target.value;
+        //set timeout on icon class change 
+        this.setState({
+            inProcess: true
+        })
         this.props.moveBook(this.props.book, shelf)
 
         this.setState({shelf});
@@ -33,7 +38,8 @@ class Book extends Component{
                 <div className="book">
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})`}}></div>
-                        <div className="book-shelf-changer">
+                        {/* <div className="book-shelf-changer"> */}
+                        <div className={ this.state.inProcess ? "book-shelf-in-process" : "book-shelf-changer" }>
                             {/* if no shelf assigned to book, assign "none" */}
                             <select value={shelf ? shelf: 'none'} onChange={this.moveBook}>
                                 <option value="move" disabled>Move to...</option>
