@@ -16,10 +16,14 @@ class Book extends Component{
 
     moveBook = (event) => {
         const shelf = event.target.value;
-        //set timeout on icon class change 
         this.setState({
             inProcess: true
-        })
+        });
+        setTimeout(() => {
+            this.setState({
+                inProcess: false
+            })
+        }, 1000);
         this.props.moveBook(this.props.book, shelf)
 
         this.setState({shelf});
