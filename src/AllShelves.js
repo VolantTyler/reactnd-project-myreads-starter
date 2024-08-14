@@ -8,12 +8,12 @@ class AllShelves extends Component {
 
         const currently = books.filter(book => book.shelf === 'currentlyReading');
         const want = books.filter(book => book.shelf === 'wantToRead');
-        const haveRead = books.filter(book => book.shelf === 'read');
+        const previously = books.filter(book => book.shelf === 'read');
  
         return [
             {type: 'Currently Reading', books: currently}, 
             {type: 'Want To Read', books: want}, 
-            {type: 'Read', books: haveRead}, 
+            {type: 'Previously Read', books: previously}, 
 
         ]
     }
