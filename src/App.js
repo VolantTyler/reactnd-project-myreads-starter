@@ -9,6 +9,7 @@ const BooksApp = () => {
   const [loading, setLoading] = useState(false);
   const [books, setBooks] = useState([]);
   const [explanation, setExplanation] = useState('');
+  const [incomingShelf, setIncomingShelf] = useState('');
 
 useEffect(() => {
   BooksAPI.getAll()
@@ -20,6 +21,8 @@ useEffect(() => {
 }, [])
 
   const moveBook = (bookToMove, newShelf) => {
+        setLoading(true)
+        setIncomingShelf(newShelf)
 
         //Suggestion from @Forrest
         //update API books array
@@ -27,9 +30,15 @@ useEffect(() => {
         //if successful, make a fresh request for the API books array
         .then(() => BooksAPI.getAll())
         //update the local state to match the API books array
-        .then(res=> setBooks(res))
+        .then(res => {
+          setBooks(res)
+          setLoading(false)
+        })
         //error handling
-        .catch((error) => setExplanation( 'Error Moving Book: '+error))
+        .catch((error) => {
+          setExplanation( 'Error Moving Book: '+error)
+          setLoading(false)
+        })
   }
 
 
@@ -41,6 +50,9 @@ useEffect(() => {
             books={books}
             explanation={explanation}
             moveBook={moveBook}
+            loading={loading}
+            setLoading={setLoading}
+            incomingShelf={incomingShelf}
           />
         )}/>
 
@@ -49,6 +61,8 @@ useEffect(() => {
             books={books}
             explanation={explanation}
             moveBook={moveBook}
+            loading={loading}
+            setLoading={setLoading}
           />
         )}/>
 
