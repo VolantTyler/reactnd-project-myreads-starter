@@ -30,7 +30,7 @@ class Book extends Component{
 
         return (
             <li key={book.id}>
-                <div className="book">
+                <div data-testid="book-list-item" className="book">
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})`}}></div>
                         <div className="book-shelf-changer">
