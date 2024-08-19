@@ -19,7 +19,7 @@ class AllShelves extends Component {
     }
 
     render() {
-        const {books, moveBook, explanation} = this.props; 
+        const {books, moveBook, explanation, loading, incomingShelf} = this.props; 
         const shelves = this.booksToShelf(books);
 
         return (
@@ -40,6 +40,8 @@ class AllShelves extends Component {
                     key={shelf.type}
                     shelf={shelf}
                     moveBook={moveBook}
+                    loading={loading}
+                    incomingShelf={incomingShelf}
                   />)}
 
               </div>
