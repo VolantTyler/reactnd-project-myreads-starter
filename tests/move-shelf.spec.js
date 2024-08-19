@@ -16,6 +16,12 @@ test('move book between shelves', async ({ page }) => {
 
   const book1 = page.getByTestId('book-list-item').nth(1)
   await expect(book1).toHaveClass('book')
-  
+
+  const bookLinux = page.getByRole('listitem').filter({ hasText: 'The Linux Command Line'})
+  await expect(bookLinux).toContainText('currentlyReading')
+  await bookLinux.getByRole('combobox').selectOption('wantToRead');
+
+  await expect(bookLinux).toContainText('wantToRead')
+  await expect(bookLinux.getByText('wantToRead')).not.toBeVisible()
 
 });

@@ -24,12 +24,13 @@ class Book extends Component{
     render(){
 
         const {book} = this.props;
+        console.log('book: ', book)
         //error handling for books without authors or imageLinks
         const {imageLinks = '', authors = ['unknown']} = book;
         const {shelf} = this.state;
 
         return (
-            <li key={book.id}>
+            <li key={book.id} bookID={book.id}>
                 <div data-testid="book-list-item" className="book">
                     <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})`}}></div>
@@ -48,6 +49,7 @@ class Book extends Component{
                     {authors.map(author =>
                         <div key={author} className="book-authors">{author}</div>
                         )}
+                    <div className='book-category'>{book.shelf}</div>
                 </div>
             </li>
         )
